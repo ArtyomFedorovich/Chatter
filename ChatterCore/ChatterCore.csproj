@@ -45,7 +45,7 @@
     <Compile Include="DataModel\DataModelController.cs" />
     <Compile Include="DataModel\DataValidation.cs" />
     <Compile Include="Network\P2PNetworkController.cs" />
-    <Compile Include="Network\TcpService\TcpPacketFormatter.cs" />
+    <Compile Include="Network\XmlFormat\XmlPacketFormatter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Network\TcpService\TcpConnectionController.cs" />
     <Compile Include="Network\UdpService\UdpConnectionController.cs" />

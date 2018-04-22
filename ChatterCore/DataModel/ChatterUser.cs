@@ -39,14 +39,18 @@ namespace ChatterCore
       public class ID
       {
         private int length = 10;
-        public string Value { get; private set; }
+        private string value;
         public ID()
         {
-          Value = GenerateUserId();
+          value = GenerateUserId();
         }
         private string GenerateUserId()
         {
           throw new NotImplementedException();
+        }
+        public override string ToString()
+        {
+          return value;
         }
       }
 

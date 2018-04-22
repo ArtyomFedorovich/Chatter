@@ -9,15 +9,16 @@ namespace ChatterCore
   public class ChatController
   {
     private P2PNetworkController networkController;
+    private Dictionary<ChatterUser.ChatterUserChatterInfo.ID, ChatterUser> connectedUsers;
     public ChatController()
     {
       networkController = new P2PNetworkController();
-      networkController.ConnectToNetwork();
+      connectedUsers = networkController.ConnectToNetwork();
     }
 
     public Dictionary<ChatterUser.ChatterUserChatterInfo.ID, ChatterUser.ChatterUserChatterInfo> GetConnectedUsersMap()
     {
-      return networkController.GetConnectedUsersMap();
+      throw new NotImplementedException();
     }
     public void SaveConnectedUsersToFile()
     {
