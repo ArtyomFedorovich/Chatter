@@ -1,0 +1,24 @@
+﻿<Application
+  x:Class="LocalPeersChatter.App"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:local="clr-namespace:LocalPeersChatter"
+  StartupUri="Views/MainWindow.xaml">
+  <Application.Resources>
+
+    <!--  Users records in listview style  -->
+    <Style x:Key="UsersColorStyle" TargetType="{x:Type ListViewItem}">
+      <Style.Triggers>
+        <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+          <Setter Property="Background" Value="LightGreen" />
+        </Trigger>
+        <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+          <Setter Property="Background" Value="Lavender" />
+        </Trigger>
+      </Style.Triggers>
+      <Setter Property="HorizontalAlignment" Value="Stretch" />
+      <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    </Style>
+
+  </Application.Resources>
+</Application>
