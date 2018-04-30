@@ -6,24 +6,14 @@ using System.Threading.Tasks;
 
 namespace ChatterCore
 {
-  public enum ConnectionStatus
-  {
-    Connected,
-    ConnectionRequest,
-    DisconnectionRequest,
-    Disconnected
-  }
   public class P2PNetworkController
   {
-    private DataModelController dataModelController;
-    public Dictionary<ChatterUser.ChatterUserChatterInfo.ID, ChatterUser.ChatterUserChatterInfo> ConnectedUsersMap { get; }
+    public Dictionary<ChatterUser.ChatterUserChatterInfo.ID, ChatterUser.ChatterUserChatterInfo> connectedUsersMap;
 
     private ChatterUser currentUser;
-    public P2PNetworkController()
+    public P2PNetworkController(Dictionary<ChatterUser.ChatterUserChatterInfo.ID, ChatterUser.ChatterUserChatterInfo> connectedUsersMap)
     {
-      dataModelController = new DataModelController();
-      ConnectedUsersMap = dataModelController.GetConnectedToNetworkUsersMap();
-
+      this.connectedUsersMap = connectedUsersMap;
     }
     public Dictionary<ChatterUser.ChatterUserChatterInfo.ID, ChatterUser> ConnectToNetwork()
     {

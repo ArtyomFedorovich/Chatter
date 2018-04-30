@@ -7,6 +7,15 @@ using System.Net;
 
 namespace ChatterCore
 {
+  public enum ConnectionStatus
+  {
+    NotConnected,
+    Connected,
+    ConnectionRequest,
+    DisconnectionRequest,
+    Disconnected,
+    Abandoned
+  }
   public class ChatterUser
   {
     #region UserInfo Declaration
@@ -44,6 +53,7 @@ namespace ChatterCore
         {
           value = GenerateUserId();
         }
+
         private string GenerateUserId()
         {
           throw new NotImplementedException();
@@ -52,10 +62,15 @@ namespace ChatterCore
         {
           return value;
         }
+        public void FromString(string value)
+        {
+          this.value = value;
+        }
       }
 
       public ID Id { get; private set; } = new ID();
       public IPEndPoint UserSocket { get; private set; }
+      public ConnectionStatus Status { get; set; } = ConnectionStatus.NotConnected;
     }
     #endregion
     #endregion
@@ -69,18 +84,27 @@ namespace ChatterCore
     public ChatterUserPersonalInfo UserPersonalInfo { get; private set; }
     #endregion
 
-    #region Controller
-    private DataModelController dataModelController;
-    #endregion
-
     #region ChatterUser Constructor
     public ChatterUser()
     {
-      dataModelController = new DataModelController();
+      //dataModelController = new DataModelController();
 
-      userAuthInfo = new ChatterUserAuthInfo(dataModelController.ProvideUserAuthInfo());
-      UserChatterInfo = dataModelController.ProvideUserChatterInfo();
-      UserPersonalInfo = dataModelController.ProvideUserPersonalInfo();
+      //userAuthInfo = new ChatterUserAuthInfo(dataModelController.ProvideUserAuthInfo());
+      //UserChatterInfo = dataModelController.ProvideUserChatterInfo();
+      //UserPersonalInfo = dataModelController.ProvideUserPersonalInfo();
+      var authInfo = new Dictionary<UserAuthInfoItem, string>();
+      authInfo.Add(UserAuthInfoItem.Login, null);
+      authInfo.Add(UserAuthInfoItem.Password, null);
+      userAuthInfo = new ChatterUserAuthInfo(authInfo);
+      UserChatterInfo = new ChatterUserChatterInfo();
+      UserPersonalInfo = new ChatterUserPersonalInfo();
+    }
+    #endregion
+
+    #region Public Methods
+    public void SetUserStatus(ConnectionStatus status)
+    {
+      UserChatterInfo.Status = status;
     }
     #endregion
   }
